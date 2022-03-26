@@ -1,0 +1,31 @@
+{
+  "name": "metarhia-docs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "generate.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node preview.js && serve ./.dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paul4Olden/metarhia-docs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paul4Olden/metarhia-docs/issues"
+  },
+  "homepage": "https://github.com/Paul4Olden/metarhia-docs#readme",
+  "dependencies": {
+    "rehype-sanitize": "^5.0.1",
+    "rehype-stringify": "^9.0.3",
+    "remark": "^14.0.2",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "serve": "^13.0.2",
+    "unified": "^10.1.2"
+  }
+}
