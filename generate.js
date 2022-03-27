@@ -1,4 +1,3 @@
-
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import fs from 'fs';
@@ -10,8 +9,6 @@ import remarkGfm from 'remark-gfm';
 
 const docsPath = './docs';
 
-// const remarkProcessor = await remark().use(remarkParse);
-
 const readdirRecursiveSync = (dirPath) => {
     const out = {};
     const dirs = fs.readdirSync(dirPath);
@@ -20,30 +17,37 @@ const readdirRecursiveSync = (dirPath) => {
         if (fs.lstatSync(path.resolve(docsPath, dir)).isDirectory()) {
             out[dir] = readdirRecursiveSync(path.resolve(dirPath, dir));
         } else {
-            out[dir] = fs.readFileSync(path.resolve(dirPath, dir)).toString();
+            out[dir.replace(/\.[^/.]+$/, '')] = fs.readFileSync(path.resolve(dirPath, dir)).toString();
         }
     }
 
     return out;
 }
 
-const getDocFiles = () => {
-    return readdirRecursiveSync(docsPath);;
+const generateHtmlFiles = async (file) => {
+    return await unified()
+        .use(remarkParse)
+        .use(remarkGfm)
+        .use(remarkRehype)
+        .use(rehypeSanitize)
+        .use(rehypeStringify)
+        .process(file);
+}
+
+const writeFileRecursively = async (data, callback, dir) => {
+
+    for (const [name, file] of Object.entries(data)) {
+        if (typeof file === 'string') {
+            const fileAbsolutePath = path.resolve(path.join(dir, name) + '.html');
+            fs.writeFileSync(fileAbsolutePath, file);
+        }
+    }
 }
 
 export async function generateDocs(format) {
-    const filesStruct = getDocFiles();
-    
-    for (const [name, file] of Object.entries(filesStruct)) {
-        if (typeof file === 'string')
-            console.log(await unified()
-                .use(remarkParse)
-                .use(remarkGfm)
-                .use(remarkRehype)
-                .use(rehypeSanitize)
-                .use(rehypeStringify)
-                .process(file))
-    }
+    const docfiles = readdirRecursiveSync(docsPath);
+
+    console.log(await writeFileRecursively(docfiles, generateHtmlFiles, docsPath))
 }
 
 await generateDocs();
