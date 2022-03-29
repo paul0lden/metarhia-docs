@@ -1,3 +1,3 @@
-import { generateDocs } from './generate.js';
+import { generateDocs } from './tool/generate.js';
 
 await generateDocs();
