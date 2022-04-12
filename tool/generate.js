@@ -14,63 +14,56 @@ import { combineWithTemplate } from './html.js';
 const docsPath = process.env.DOCS_PATH ? process.env.DOCS_PATH : './docs';
 
 const generateHtmlFiles = async (file) => {
-    const parsedMD = await unified()
-        .use(remarkParse)
-        .use(remarkPrism)
-        .use(remarkGfm)
-        .use(remarkHtml)
-        .process(file);
+  const parsedMD = await unified().use(remarkParse).use(remarkPrism).use(remarkGfm).use(remarkHtml).process(file);
 
-    return combineWithTemplate(parsedMD); 
-}
+  return combineWithTemplate(parsedMD);
+};
 
 const writeFileRecursively = async (files, dir, callback) => {
-    for (const [name, file] of Object.entries(files)) {
-        if (typeof file === 'string') {
-            const fileAbsolutePath = path.resolve(path.join(dir, name) + '.html');
+  for (const [name, file] of Object.entries(files)) {
+    if (typeof file === 'string') {
+      const fileAbsolutePath = path.resolve(path.join(dir, name) + '.html');
 
-            if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
-            fs.writeFileSync(fileAbsolutePath, await callback(file));
-        } else {
-            writeFileRecursively(file, path.join(dir, name), callback);
-        }
+      fs.writeFileSync(fileAbsolutePath, await callback(file));
+    } else {
+      writeFileRecursively(file, path.join(dir, name), callback);
     }
-}
+  }
+};
 
 // todo add minifier
 const minifyCss = (file) => {
-    return file;
-}
+  return file;
+};
 
 // todo add minifier
 const minifyJs = (file) => {
-    return file;
-}
+  return file;
+};
 
 const buildStatic = (staticDirPath, outDirPath) => {
-    const staticDir = fs.readdirSync(staticDirPath);
-    
-    for (const file of staticDir) {
-        if (!file.includes('.min.')) {
-            if (path.extname(file) === '.css') {
-                minifyCss(file);
-            } else if (path.extname(file) === '.js') {
-                minifyJs(file);
-            }
-        }
-
-        if (fs.existsSync(path.join(outDirPath, file))) { 
-            fs.rmSync(path.join(outDirPath, file));
-        }
-        fs.copyFileSync(path.join(staticDirPath, file), path.join(outDirPath, file));
+  const staticDir = fs.readdirSync(staticDirPath);
+  for (const file of staticDir) {
+    const ext = path.extname(file);
+    if (!file.includes('.min.')) {
+      if (ext === '.css') minifyCss(file);
+      else if (ext === '.js') minifyJs(file);
+      else continue;
     }
-}
+    const src = path.join(staticDirPath, file);
+    const dest = path.join(outDirPath, file);
+    const isDir = fs.existsSync(outDirPath);
+    if (!isDir) fs.mkdirSync(outDirPath);
+    fs.copyFileSync(src, dest);
+  }
+};
 
 export async function generateDocs(format) {
-    const docfiles = readFilesRecursiveSync(docsPath);
+  const docfiles = readFilesRecursiveSync(docsPath);
 
-    buildStatic(path.resolve('./static'), path.resolve('./.dist'));
+  buildStatic(path.resolve('./static'), path.resolve('./.dist'));
 
-    await writeFileRecursively(docfiles, path.resolve('./.dist'), generateHtmlFiles)
+  await writeFileRecursively(docfiles, path.resolve('./.dist'), generateHtmlFiles);
 }
