@@ -3,19 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' wss:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com">
+    <title>__TITLE__</title>
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/prism.css">
+    <link rel="stylesheet" href="/highlight.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    __STATIC__
 </head>
 <body>
+    
+    <input type="checkbox" onChange="switchTheme()" checked="getTheme()" class="toggle-checkbox dark-mode-checkbox" id="dark-switch">
+    <label class="darkmode-switch" for="dark-switch">
+        <div class='toggle-slot'>
+            <div class='toggle-button'></div>
+        </div>
+    </label>
     <div class="document-wrapper theme-container">
-        <input type="checkbox" class="header-checkbox" name="" id="">
+        <input type="checkbox" class="header-checkbox">
         <header class="header">
             <nav class="navbar">
+                <div class="intro">
+                    <a href="http://metarhia.com">
+                        <img src="/metarhia_text.svg" alt="">
+                    </a>
+                </div>
                 __LINKS__
             </nav>
         </header>
@@ -25,6 +43,14 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/prism.js"></script>
+    <script>
+        function switchTheme(e) {
+            window.localStorage.setItem('theme', e.target.checked);
+        }
+
+        function getTheme() {
+            return window.localStorage.getItem('theme');
+        }
+    </script>
 </body>
 </html>

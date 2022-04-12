@@ -4,21 +4,23 @@ import path from 'path';
 
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
-import remarkHtml from 'remark-html';
-import remarkPrism from 'remark-prism';
 import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
 
 import { readFilesRecursiveSync } from './utils.js';
 import { combineWithTemplate } from './html.js';
+import rehypeStringify from 'rehype-stringify';
+import rehypeHighlight from 'rehype-highlight';
 
 const docsPath = process.env.DOCS_PATH ? process.env.DOCS_PATH : './docs';
 
 const generateHtmlFiles = async (file) => {
     const parsedMD = await unified()
         .use(remarkParse)
-        .use(remarkPrism)
         .use(remarkGfm)
-        .use(remarkHtml)
+        .use(remarkRehype)
+        .use(rehypeHighlight)
+        .use(rehypeStringify)
         .process(file);
 
     return combineWithTemplate(parsedMD); 
@@ -70,7 +72,8 @@ const buildStatic = (staticDirPath, outDirPath) => {
 export async function generateDocs(format) {
     const docfiles = readFilesRecursiveSync(docsPath);
 
-    buildStatic(path.resolve('./static'), path.resolve('./.dist'));
+    // TODO: implement static builder
+    // buildStatic(path.resolve('./static'), path.resolve('./.dist'));
 
     await writeFileRecursively(docfiles, path.resolve('./.dist'), generateHtmlFiles)
 }

@@ -1,0 +1,215 @@
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+
+  Modified: Paul Oldenburger
+*/
+
+:root {
+    /* light theme colors */
+
+    --code-light-color: #24292e;
+    --code-light-background: #f3f3f3;
+    --code-light-keyword: #d73a49;
+    --code-light-syntax-entity: #6f42c1;
+    --code-light-syntax-constant: #005cc5;
+    --code-light-syntax-string: #032f62;
+    --code-light-syntax-variable: #e36209;
+    --code-light-syntax-comment: #6a737d;
+    --code-light-syntax-entity-tag: #22863a;
+    --code-light-syntax-storage-modifier: #24292e;
+    --code-light-syntax-markup-heading: #005cc5;
+    --code-light-syntax-markup-list: #735c0f;
+    --code-light-syntax-markup-italic: #24292e;
+    --code-light-syntax-markup-bold: #24292e;
+    --code-light-syntax-markup-inserted: #22863a;
+    --code-light-syntax-markup-inserted_bg: #f0fff4;
+    --code-light-syntax-markup-deleted: #b31d28;
+    --code-light-syntax-markup-deleted_bg: #ffeef0;
+
+    /* dark theme colors */
+
+    --code-dark-color: #c9d1d9;
+    --code-dark-background: #0d1117;
+    --code-dark-keyword: #ff7b72;
+    --code-dark-syntax-entity: #d2a8ff;
+    --code-dark-syntax-constant: #79c0ff;
+    --code-dark-syntax-string: #a5d6ff;
+    --code-dark-syntax-variable: #ffa657;
+    --code-dark-syntax-comment: #8b949e;
+    --code-dark-syntax-entity-tag: #7ee787;
+    --code-dark-syntax-storage-modifier: #c9d1d9;
+    --code-dark-syntax-markup-heading: #1f6feb;
+    --code-dark-syntax-markup-list: #f2cc60;
+    --code-dark-syntax-markup-italic: #c9d1d9;
+    --code-dark-syntax-markup-bold: #c9d1d9;
+    --code-dark-syntax-markup-inserted: #aff5b4;
+    --code-dark-syntax-markup-inserted_bg: #033a16;
+    --code-dark-syntax-markup-deleted: #ffdcd7;
+    --code-dark-syntax-markup-deleted_bg: #67060c;
+}
+
+/* light theme definitions */
+.theme-container {
+    --code-color: var(--code-light-color);
+    --code-background: var(--code-light-background);
+    --code-keyword: var(--code-light-keyword);
+    --code-syntax-entity: var(--code-light-syntax-entity);
+    --code-syntax-constant: var(--code-light-syntax-constant);
+    --code-syntax-string: var(--code-light-syntax-string);
+    --code-syntax-variable: var(--code-light-syntax-variable);
+    --code-syntax-comment: var(--code-light-syntax-comment);
+    --code-syntax-entity-tag: var(--code-light-syntax-entity-tag);
+    --code-syntax-storage-modifier: var(--code-light-syntax-storage-modifier);
+    --code-syntax-markup-heading: var(--code-light-syntax-markup-heading);
+    --code-syntax-markup-list: var(--code-light-syntax-markup-list);
+    --code-syntax-markup-italic: var(--code-light-syntax-markup-italic);
+    --code-syntax-markup-bold: var(--code-light-syntax-markup-bold);
+    --code-syntax-markup-inserted: var(--code-light-syntax-markup-inserted);
+    --code-syntax-markup-inserted_bg: var(--code-light-syntax-markup-inserted_bg);
+    --code-syntax-markup-deleted: var(--code-light-syntax-markup-deleted);
+    --code-syntax-markup-deleted_bg: var(--code-light-syntax-markup-deleted_bg);
+}
+
+/* dark theme definitions */
+.dark-mode-checkbox:checked ~ .theme-container {
+    --code-color: var(--code-dark-color);
+    --code-background: var(--code-dark-background);
+    --code-keyword: var(--code-dark-keyword);
+    --code-syntax-entity: var(--code-dark-syntax-entity);
+    --code-syntax-constant: var(--code-dark-syntax-constant);
+    --code-syntax-string: var(--code-dark-syntax-string);
+    --code-syntax-variable: var(--code-dark-syntax-variable);
+    --code-syntax-comment: var(--code-dark-syntax-comment);
+    --code-syntax-entity-tag: var(--code-dark-syntax-entity-tag);
+    --code-syntax-storage-modifier: var(--code-dark-syntax-storage-modifier);
+    --code-syntax-markup-heading: var(--code-dark-syntax-markup-heading);
+    --code-syntax-markup-list: var(--code-dark-syntax-markup-list);
+    --code-syntax-markup-italic: var(--code-dark-syntax-markup-italic);
+    --code-syntax-markup-bold: var(--code-dark-syntax-markup-bold);
+    --code-syntax-markup-inserted: var(--code-dark-syntax-markup-inserted);
+    --code-syntax-markup-inserted_bg: var(--code-dark-syntax-markup-inserted_bg);
+    --code-syntax-markup-deleted: var(--code-dark-syntax-markup-deleted);
+    --code-syntax-markup-deleted_bg: var(--code-dark-syntax-markup-deleted_bg);
+}
+
+pre, pre .hljs {
+  color: var(--code-color);
+  background: var(--code-background);
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: var(--code-keyword);
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: var(--code-syntax-entity);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: var(--code-syntax-constant);
+}
+
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: var(--code-syntax-string);
+}
+
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: var(--code-syntax-variable);
+}
+
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: var(--code-syntax-comment);
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: var(--code-syntax-entity-tag);
+}
+
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: var(--code-syntax-storage-modifier);
+}
+
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: var(--code-syntax-markup-heading);
+  font-weight: bold;
+}
+
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: var(--code-syntax-markup-list);
+}
+
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: var(--code-syntax-markup-italic);
+  font-style: italic;
+}
+
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: var(--code-syntax-markup-bold);
+  font-weight: bold;
+}
+
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: var(--code-syntax-markup-inserted);
+  background-color: var(--code-syntax-markup-inserted_bg);
+}
+
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: var(--code-syntax-markup-deleted);
+  background-color: var(--code-syntax-markup-deleted_bg);
+}
+
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+}

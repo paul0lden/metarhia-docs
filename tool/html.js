@@ -22,12 +22,14 @@ const transformLinks = (links, name = 'Metarhia Documentation') => {
     return `<a href=${index}>${name}</a><ul>${navbar.join('')}</ul>`
 }
 
-export const combineWithTemplate = (html) => {
+export const combineWithTemplate = (html, name = 'Metarhia Documentation') => {
     const template = fs.readFileSync(path.resolve('./tool/template.html')).toString();
     const links = readPathsRecursiveSync('./docs');
 
     const navbar = transformLinks(links);
 
     return template.replace('__CONTENT__', html)
-                   .replace('__LINKS__', navbar);
+                   .replace('__LINKS__', navbar)
+                   .replace('__STATIC__', '')
+                   .replace('__TITLE__', name);
 }
