@@ -19,7 +19,7 @@
 </head>
 <body>
     
-    <input type="checkbox" onChange="switchTheme()" checked="getTheme()" class="toggle-checkbox dark-mode-checkbox" id="dark-switch">
+    <input type="checkbox" onChange="switchTheme(event)" class="toggle-checkbox dark-mode-checkbox" id="dark-switch">
     <label class="darkmode-switch" for="dark-switch">
         <div class='toggle-slot'>
             <div class='toggle-button'></div>
@@ -48,9 +48,13 @@
             window.localStorage.setItem('theme', e.target.checked);
         }
 
-        function getTheme() {
-            return window.localStorage.getItem('theme');
+        if (!window.localStorage.getItem('theme') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            window.localStorage.setItem('theme', true);
         }
+        
+        const checkbox = document.getElementById('dark-switch');
+
+        window.localStorage.getItem('theme') === 'true' ? checkbox.setAttribute('checked', true) : checkbox.removeAttribute('checked');
     </script>
 </body>
 </html>
