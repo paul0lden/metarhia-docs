@@ -1,6 +1,5 @@
 # Impress
 
-
 ## Description
 
 **First** Node.js server scaled with **multithreading** and extra thin workload
@@ -20,9 +19,9 @@ handshake, no third-party dependencies.
 
 ## Quick start
 
-- See project template: [metarhia/Example](https://github.com/metarhia/Example)
-- Start server with `node server.js`
-- See [documentation and specifications](https://github.com/metarhia/Contracts)
+*   See project template: [metarhia/Example](https://github.com/metarhia/Example)
+*   Start server with `node server.js`
+*   See [documentation and specifications](https://github.com/metarhia/Contracts)
 
 API endpoint example: `application/api/example.1/citiesByCountry.js`
 
@@ -43,57 +42,57 @@ const res = await metacom.api.example.citiesByCountry({ countryId: 3 });
 
 ## Metarhia and impress application server way
 
-- Applied code needs to be simple and secure, so we use sandboxing with v8
-  isolated contexts, worker threads and javascript closures;
-- Domain code should be separated from system code; so we use DDD, layered
-  (onion) architecture, DI, SOLID and GRASP principles, contract-based approach;
-- Impress supports stateful applications with RPC and client-session sticky to
-  servers; microservices, centralized or distributed architecture;
-- No I/O is faster even than async I/O, so we hold state in memory, share it
-  among multiple threads and use lazy I/O for persistent storage;
-- We use just internal trusted dependencies, no third-party npm packages;
-  total Metarhia technology stack size is less than 2mb.
+*   Applied code needs to be simple and secure, so we use sandboxing with v8
+    isolated contexts, worker threads and javascript closures;
+*   Domain code should be separated from system code; so we use DDD, layered
+    (onion) architecture, DI, SOLID and GRASP principles, contract-based approach;
+*   Impress supports stateful applications with RPC and client-session sticky to
+    servers; microservices, centralized or distributed architecture;
+*   No I/O is faster even than async I/O, so we hold state in memory, share it
+    among multiple threads and use lazy I/O for persistent storage;
+*   We use just internal trusted dependencies, no third-party npm packages;
+    total Metarhia technology stack size is less than 2mb.
 
 ## Features
 
-- **Auto API routing**, just create endpoint files as an async function;
-- Code **live reload** with file system watch (when files change on disk);
-- **Graceful shutdown** and application state recovery after reload;
-- **Minimal dependencies** and code size;
-- Can scale with **multiple threads** and servers;
-- Code **sandboxing** for security and context isolation;
-- Auto module loader with **dependency injection** for namespaces;
-- **Layered architecture** out of the box: core, domain, API, client;
-- Utilize multiple CPU cores and serve multiple ports with worker threads;
-- Inter-process communication and shared memory used for state management;
-- State synchronization mechanism with transactions and subscription;
-- Cache server-side executable JavaScript in memory;
-- Rapid **API** development support: AJAX RPC and **Websocket**;
-- Serve static files from memory cache;
-- Application configuration (for different named environments);
-- Database access layer for PostgreSQL and relational db schemas;
-- Persistent sessions support with authentication, groups, and anonymous;
-- Multiple protocols: HTTP, HTTPS, WS, WSS;
-- Logging with buffering (lazy write) and rotation (keep logs N days);
-- File utilities: upload, download, streaming;
-- Built-in simple testing framework;
-- Server health monitoring;
-- Built-in data structures validation and preprocessing library;
-- Task scheduling (interval or certain time);
-- Concurrency control: request queue with timeout and size;
-- Execution timeout and error handling;
+*   **Auto API routing**, just create endpoint files as an async function;
+*   Code **live reload** with file system watch (when files change on disk);
+*   **Graceful shutdown** and application state recovery after reload;
+*   **Minimal dependencies** and code size;
+*   Can scale with **multiple threads** and servers;
+*   Code **sandboxing** for security and context isolation;
+*   Auto module loader with **dependency injection** for namespaces;
+*   **Layered architecture** out of the box: core, domain, API, client;
+*   Utilize multiple CPU cores and serve multiple ports with worker threads;
+*   Inter-process communication and shared memory used for state management;
+*   State synchronization mechanism with transactions and subscription;
+*   Cache server-side executable JavaScript in memory;
+*   Rapid **API** development support: AJAX RPC and **Websocket**;
+*   Serve static files from memory cache;
+*   Application configuration (for different named environments);
+*   Database access layer for PostgreSQL and relational db schemas;
+*   Persistent sessions support with authentication, groups, and anonymous;
+*   Multiple protocols: HTTP, HTTPS, WS, WSS;
+*   Logging with buffering (lazy write) and rotation (keep logs N days);
+*   File utilities: upload, download, streaming;
+*   Built-in simple testing framework;
+*   Server health monitoring;
+*   Built-in data structures validation and preprocessing library;
+*   Task scheduling (interval or certain time);
+*   Concurrency control: request queue with timeout and size;
+*   Execution timeout and error handling;
 
 ## Requirements
 
-- Node.js v12.9.0 or later (v14 preferred)
-- Linux (tested on Fedora 30, Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
-- Postgresql 9.5 or later (v11.8 preferred)
-- OpenSSL v1.1.1 or later (optional, for https & wss)
-- [certbot](https://github.com/certbot/certbot) (recommended but optional)
+*   Node.js v12.9.0 or later (v14 preferred)
+*   Linux (tested on Fedora 30, Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
+*   Postgresql 9.5 or later (v11.8 preferred)
+*   OpenSSL v1.1.1 or later (optional, for https & wss)
+*   [certbot](https://github.com/certbot/certbot) (recommended but optional)
 
 ## License & Contributors
 
 Copyright (c) 2012-2022 Metarhia contributors.
 See github for full [contributors list](https://github.com/metarhia/impress/graphs/contributors).
 Impress Application Server is [MIT licensed](./LICENSE).
-Project coordinator: &lt;timur.shemsedinov@gmail.com&gt;
+Project coordinator: \<timur.shemsedinov@gmail.com>
