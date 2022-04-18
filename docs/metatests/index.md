@@ -2,30 +2,9 @@
 
 `metatests` is an extremely simple to use test framework and runner for Metarhia
 technology stack built on the following principles:
-[Link to Header](#the-header)
 
 *   Test cases are files, tests are either imperative (functions) or declarative
     (arrays and structures).
-
-## The Header
-
-# Alpha
-
-Links are checked:
-
-This [exists](#alpha).
-This [one does not](#does-not).
-
-# Bravo
-
-Headings in `readme.md` are [checked](readme.md#no-such-heading).
-And [missing files are reported](missing-example.js).
-
-Definitions are also checked:
-
-[alpha]: #alpha
-
-[charlie]: #charlie
 
 References w/o definitions are not checked: \[delta]
 
