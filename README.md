@@ -2,4 +2,4 @@
 
 # Preview
 
-run ``` npm run start ``` to preview
+run `npm run start` to preview

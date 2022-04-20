@@ -5,7 +5,10 @@ import path from 'path';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
 import remarkRehype from 'remark-rehype';
+import remarkValidateLinks from 'remark-validate-links';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import { readFilesRecursiveSync } from './utils.js';
 import { combineWithTemplate } from './html.js';
@@ -15,13 +18,16 @@ import rehypeHighlight from 'rehype-highlight';
 const docsPath = process.env.DOCS_PATH ? process.env.DOCS_PATH : './docs';
 
 const generateHtmlFiles = async (file) => {
-    const parsedMD = await unified()
-        .use(remarkParse)
-        .use(remarkGfm)
-        .use(remarkRehype)
-        .use(rehypeHighlight)
-        .use(rehypeStringify)
-        .process(file);
+  const parsedMD = await unified()
+    .use(remarkValidateLinks)
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings)
+    .process(file);
 
   return combineWithTemplate(parsedMD);
 };
